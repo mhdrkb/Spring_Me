@@ -1,0 +1,19 @@
+IOC,
+DI,
+Bean,
+Bean life cycle,
+Autowired,
+Qualify,
+AOP
+spring bean scope
+	singleton
+
+#bean lays in Ioc container
+#Bean or object instantiate is also a task of IOC
+#in IOC i can inject properties value in tew ways, 1) costructor based, 2) getter setter based
+	IOC container contains the object of a bean, the bean can be created in xml or fava file.
+	if i need to read the object of the  bean class i need to read the ioc first,
+	to do so,
+		i need to create a ClassPathResourse for the xml or java file for resourse using Resourse,
+		then i need to create a bean factory at the through of rosourse,
+		then using the factory object i can call the getBean("call by the xml bean id name") method to read bean object from IOC as the object of the class.

@@ -1,0 +1,24 @@
+
+project root er vitore cmd open kore address bar hote cmd diye open korte hobe tarpor
+mvn clean install
+success howar por project er vitore target foldar theke jar file ta nite hobe; othoba oikhane theke
+alada folder e rekeh sekhane cmd open korte hobe then
+java -jar jar_file_name
+open successfully in browser with 8080 port
+to set port go to project properties opent with notepad and set
+server.port=8080
+
+important links
+spring.io
+*Projects
+	spring framework(main/core)
+	spring boot
+	spring data
+	spring rest
+	spring load
+	spring social
+*Guid
+	and some examples
+*Blog
+	tutorials
+	announcement 
