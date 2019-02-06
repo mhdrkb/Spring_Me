@@ -4,4 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="vehicle" class="com.mhd.autowire2.context.Honda"/>
     <bean id="vehicle1" class="com.mhd.autowire2.context.Bus"/>
+
+
+    <bean id="vehicle3" class="com.mhd.autowire2.qualifire.Bus"/>
+    <bean id="vehicle4" class="com.mhd.autowire2.qualifire.Honda"/>
 </beans>

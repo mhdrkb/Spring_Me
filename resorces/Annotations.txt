@@ -5,9 +5,18 @@
 
 @Component diye declare kora class object and eta IoC te bean hisebe inkjet hobe,
 
-kono class ke auto wire korte hole ta obossoi bean hisebe declare korte hoy, kenona kebol bean kei auto wire kora jay
+===>kono class ke auto wire korte hole ta obossoi bean hisebe declare korte hoy, kenona kebol bean kei auto wire kora jay
 
 example of injekting bean in IoC
-
 Address ----> IoC(create an object of address class and instantiate the class, wiring the bean together of different beans,
 	configure beans, Managing the bean).
+
+===>autowire kora jay kebol oi class kei kora jay jar kebol 1 ti bean thake, ekadhik thakle autowire kora jabena, kenona instantiate korte 
+gele indescision e thakbe.  in ths case i need to use Qualifire
+===> autowire worked along with type,
+	the introduce the type i need to use qualifire with a  bean name.
+===>singleton scope= one object for everybody, ekbar e create hobe jotoba e call kora hok na kno
+	sokol bean default scope holo singleton, create kora na thakleo
+===>prototype scope= jotobar call kora hobe totobar create hobe
+	any number of object can be created
+===>IoC takes pojo classes and the configuration file and create a data set which are ready to use .
