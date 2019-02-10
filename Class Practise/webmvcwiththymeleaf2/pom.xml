@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.mhd</groupId>
     <artifactId>webmvcwiththymeleaf2</artifactId>
+    <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>webmvcwiththymeleaf2</name>
     <description>Demo project for Spring Boot</description>
@@ -49,6 +50,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
             </plugin>
         </plugins>
     </build>

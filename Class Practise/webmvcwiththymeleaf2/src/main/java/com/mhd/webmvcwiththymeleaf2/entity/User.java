@@ -1,31 +1,44 @@
 package com.mhd.webmvcwiththymeleaf2.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user2")
 public class User {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @Size(min = 2 , max = 30)
+    @Size(min = 2 , max = 30, message = "Hey, Size must me between 2 to 30")
     private String name;
 
     @Min(value = 18, message = "Hey , minimum age is 18")
     private byte age;
 
+    @NotNull
+    @Email(message = "Enter an email")
+    @Column(name = "email", unique = true, length = 50)
+    private String email;
+
     public User() {
     }
 
-    public User(@NotNull @Size(min = 2, max = 30) String name, @Min(value = 18, message = "Hey , minimum age is 18") byte age) {
-        this.name = name;
-        this.age = age;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
     }
 
     public Long getId() {
@@ -51,14 +64,16 @@ public class User {
     public void setAge(byte age) {
         this.age = age;
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public User(@NotNull @Size(min = 2, max = 30) String name, @Min(value = 18, message = "Hey , minimum age is 18") byte age, @NotNull @Email(message = "Enter an email") String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
     }
 
     @Override
@@ -68,11 +83,12 @@ public class User {
         User user = (User) o;
         return age == user.age &&
                 Objects.equals(id, user.id) &&
-                Objects.equals(name, user.name);
+                Objects.equals(name, user.name) &&
+                Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, age);
+        return Objects.hash(id, name, age, email);
     }
 }

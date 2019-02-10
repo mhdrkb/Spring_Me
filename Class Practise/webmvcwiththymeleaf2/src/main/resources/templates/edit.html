@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style type="text/css">
+        .err {
+            color: darkred;
+        }
+
+        .success {
+            color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+<!--<span style="color: green; font-weight: 900;" th:text="${successMsg}"></span>-->
+
+<form action="#" th:object="${user}" th:action="@{/edit/} + ${id}}" th:method="POST">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td><input type="text" th:field="*{age}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="*{email}"/></td>
+            <td class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Send</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{'/'}"></a>
+</body>
+</html>
