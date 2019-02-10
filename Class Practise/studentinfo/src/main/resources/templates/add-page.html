@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style type="text/css">
+        .err {
+            color: darkred;
+        }
+        .success {
+            color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+<span th:class="success" style="color: green; font-weight: 900;" th:text="${successMsg}"></span>
+
+<form action="#" th:object="${student}" th:action="@{/add}" th:method="POST">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="*{email}"/></td>
+            <td class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+        </tr>
+        <tr>
+            <td>Mobile:</td>
+            <td><input type="text" th:field="*{phone}"/></td>
+            <td class="err" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</td>
+        </tr>
+        <tr>
+            <td>Age:</td>
+            <td><input type="text" th:field="*{age}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+        </tr>
+        <tr>
+            <td>Course Completed:</td>
+            <td>
+                <input type="checkbox" th:value="xml" th:field="*{courseCompleted}" /> XML
+                <input type="checkbox" th:value="java" th:field="*{courseCompleted}" /> Java
+                <input type="checkbox" th:value="js" th:field="*{courseCompleted}" /> JS
+                <input type="checkbox" th:value="oracle" th:field="*{courseCompleted}" /> Oracle
+                <input type="checkbox" th:value="html" th:field="*{courseCompleted}" /> HTML
+            </td>
+            <td th:class="err" th:if="${#fields.hasErrors('courseCompleted')}" th:errors="*{courseCompleted}">Course Error</td>
+        </tr>
+        <tr>
+            <td>Gender:</td>
+            <td>
+                <input type="radio" th:value="female" th:field="*{gender}" /> Female
+                <input type="radio" th:value="male" th:field="*{gender}" /> Male
+            </td>
+            <td th:class="err" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}">Gender Error</td>
+        </tr>
+        <tr>
+            <td>Round:</td>
+            <td>
+                <select th:field="*{round}">
+                    <option th:value="37">37</option>
+                    <option th:value="38">38</option>
+                    <option th:value="39">39</option>
+                    <option th:value="39">40</option>
+                    <option th:value="39">41</option>
+                </select>
+            </td>
+            <td th:class="err" th:if="${#fields.hasErrors('round')}" th:errors="*{round}">Round Error</td>
+        </tr>
+        <tr>
+            <td>Birth Date:</td>
+            <td><input type="date" th:field="*{birthDate}"/></td>
+            <td class="err" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birthdate Error</td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Send</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{'/'}">Home</a>
+</body>
+</html>
