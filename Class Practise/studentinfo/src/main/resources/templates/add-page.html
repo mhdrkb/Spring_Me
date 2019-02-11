@@ -15,7 +15,7 @@
 <body>
 <span th:class="success" style="color: green; font-weight: 900;" th:text="${successMsg}"></span>
 
-<form action="#" th:object="${student}" th:action="@{/add}" th:method="POST">
+<form action="#" th:object="${student}" th:action="@{/add}" th:method="POST" enctype="multipart/form-data">
     <table>
         <tr>
             <td>Name:</td>
@@ -75,8 +75,12 @@
             <td class="err" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birthdate Error</td>
         </tr>
         <tr>
+            <td>Upload Image:</td>
+            <td><input type="file" name="file"/></td>
+        </tr>
+        <tr>
             <td>
-                <button type="submit">Send</button>
+                <input type="submit" value="Save"/>
             </td>
         </tr>
     </table>

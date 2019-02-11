@@ -76,6 +76,10 @@
             <td class="err" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birthdate Error</td>
         </tr>
         <tr>
+            <td>Upload Image:</td>
+            <td><input type="file" name="file"/></td>
+        </tr>
+        <tr>
             <td>
                 <button type="submit">Send</button>
             </td>
