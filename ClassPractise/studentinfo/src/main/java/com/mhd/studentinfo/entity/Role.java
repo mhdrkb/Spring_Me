@@ -1,6 +1,7 @@
 package com.mhd.studentinfo.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +11,9 @@ public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty(message = "Enter a Role Name")
+    @Column(unique = true, name = "role_name")
     private String roleName;
 
     public Role() {
