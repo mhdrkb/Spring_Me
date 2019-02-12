@@ -18,11 +18,14 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-10">
+        <div class="col-8">
             <h2>Our Spring MVC Creud App</h2>
         </div>
         <div class="col-2">
-            <a class="btn" th:href="@{/role}" >Add Role</a>
+            <a class="btn" th:href="@{/add-role}" >Add Role</a>
+        </div>
+        <div class="col-2">
+            <a class="btn" th:href="@{/}" >Home</a>
         </div>
     </div>
 <table class="table table-striped">
@@ -37,7 +40,7 @@
         <td th:text="${u.roleName}"></td>
 
         <td><a th:href="@{'/edit-role/' + ${u.id}}">Edit</a></td>
-        <td><a th:href="@{'/roleDel/' + ${u.id}}">Delete</a></td>
+        <td><a th:href="@{'/role-del/' + ${u.id}}">Delete</a></td>
     </tr>
 </table>
 </div>

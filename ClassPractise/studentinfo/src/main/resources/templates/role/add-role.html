@@ -15,7 +15,7 @@
 <body>
 <span th:class="success" style="color: green; font-weight: 900;" th:text="${successMsg}"></span>
 
-<form action="#" th:object="${role}" th:action="@{/role}" th:method="POST">
+<form action="#" th:object="${role}" th:action="@{add-role}" th:method="POST">
     <table>
         <tr>
             <td>Name:</td>
@@ -29,6 +29,6 @@
         </tr>
     </table>
 </form>
-<a th:href="@{'/'}">Home</a>
+<a th:href="@{'/role-list'}">RoleList</a>
 </body>
 </html>

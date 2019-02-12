@@ -17,8 +17,8 @@
 
 
 <form action="#" th:object="${role}" th:action="@{/edit-role/} + ${id}" th:method="POST">
-    <input type="hidden" th:field="*{id}" th:value="${role.id}"/>
     <table>
+        <input type="hidden" th:field="*{id}" />
         <tr>
             <td>Name:</td>
             <td><input type="text" th:field="*{roleName}"/></td>

@@ -18,47 +18,60 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-10">
+        <div class="col-6">
             <h2>Our Spring MVC Creud App</h2>
         </div>
         <div class="col-2">
-            <a class="btn" th:href="@{/add}" >Add User</a>
+            <a class="btn" th:href="@{/add}">Add User</a>
         </div>
+        <div class="col-2">
+            <a class="btn" th:href="@{/add-role}">Add Role</a>
+        </div>
+        <div class="col-2">
+            <a class="btn" th:href="@{/role-list}">Role List</a>
+        </div>
+
     </div>
-<table class="table table-striped">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Courses</th>
-        <th>Round</th>
-        <th>DOB</th>
-        <th>Image</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </tr>
-    <tr th:each="u : ${list}">
-        <td th:text="${u.id}"></td>
-        <td th:text="${u.name}"></td>
-        <td th:text="${u.email}"></td>
-        <td th:text="${u.phone}"></td>
-        <td th:text="${u.age}"></td>
-        <td th:text="${u.gender}"></td>
-        <td >
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Courses</th>
+            <th>Round</th>
+            <th>DOB</th>
+            <th>Role Name</th>
+            <th>Image</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="u : ${list}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.name}"></td>
+            <td th:text="${u.email}"></td>
+            <td th:text="${u.phone}"></td>
+            <td th:text="${u.age}"></td>
+            <td th:text="${u.gender}"></td>
+            <td>
             <span th:each="c : ${u.courseCompleted}">
                 <span th:text="${c}"></span>
             </span>
-        </td>
-        <td th:text="${u.round}"></td>
-        <td th:text="${u.birthDate}" th:pattern="yyyy-MM-dd"></td>
-<td><img th:src="@{${u.filePath}}" height="100" width="200"></td>
-        <td><a th:href="@{'/edit/' + ${u.id}}">Edit</a></td>
-        <td><a th:href="@{'/del/' + ${u.id}}">Delete</a></td>
-    </tr>
-</table>
+            </td>
+            <td th:text="${u.round}"></td>
+            <td th:text="${u.birthDate}" th:pattern="yyyy-MM-dd"></td>
+            <td>
+                <span th:each="rr : ${u.roles}">
+                    <span th:text="${rr.roleName}"></span>
+                </span>
+            </td>
+            <td><img th:src="@{${u.filePath}}" height="100" width="200"></td>
+            <td><a th:href="@{'/edit/' + ${u.id}}">Edit</a></td>
+            <td><a th:href="@{'/del/' + ${u.id}}">Delete</a></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

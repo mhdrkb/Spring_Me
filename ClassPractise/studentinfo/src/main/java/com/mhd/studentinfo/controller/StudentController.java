@@ -3,6 +3,7 @@ package com.mhd.studentinfo.controller;
 
 import com.mhd.studentinfo.entity.Student;
 import com.mhd.studentinfo.imageoptimizer.ImageOptimizer;
+import com.mhd.studentinfo.repository.RoleRepo;
 import com.mhd.studentinfo.repository.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class StudentController {
     private ImageOptimizer imageOptimizer;
 
     @Autowired
+    private RoleRepo roleRepo;
+
+    @Autowired
     private StudentRepo repo;
 
 
@@ -43,7 +47,8 @@ public class StudentController {
 
 
     @GetMapping("/add")
-    public String showForm(Student student) {
+    public String showForm(Student student, Model model) {
+        model.addAttribute("roleList",this.roleRepo.findAll());
         return "add-page";
     }
 
@@ -51,7 +56,7 @@ public class StudentController {
     public String save(@Valid Student student, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "add-page";
-        }else {
+        } else {
             student.setRegiDate(new Date());
 
             try {
@@ -72,6 +77,7 @@ public class StudentController {
                 e.printStackTrace();
             }
         }
+        model.addAttribute("roleList",this.roleRepo.findAll());
         return "add-page";
     }
 

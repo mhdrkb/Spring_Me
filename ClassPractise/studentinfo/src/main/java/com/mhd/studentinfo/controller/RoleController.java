@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,49 +17,82 @@ public class RoleController {
     private RoleRepo roleRepo;
 
 
-    @GetMapping(value = "/roleHome")
+
+    @GetMapping(value = "/role-list")
     public String roleHome(Model model) {
         model.addAttribute("rolelist", this.roleRepo.findAll());
-        return "roleHome";
+        return "role/role-list";
     }
 
-    @GetMapping("/role")
+
+
+    @GetMapping("/add-role")
     public String role(Role role) {
-        return "add-role";
+        return "role/add-role";
     }
-
-    @PostMapping("/role")
+    @PostMapping("/add-role")
     public String saveRole(@Valid Role role, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "add-role";
+            return "role/add-role";
         } else {
-            this.roleRepo.save(role);
-            model.addAttribute("role", new Role()); //to clear the form after successfully reloading
-            model.addAttribute("successMsg", "Congratulations you have successfully saved Role data....");
+            if(role != null){
+                Role role1 = this.roleRepo.findByRoleName(role.getRoleName());
+                if (role1 != null){
+                    model.addAttribute("existMsg","RoleName ALready Exist");
+                }else{
+                    this.roleRepo.save(role);
+                    model.addAttribute("role", new Role()); //to clear the form after successfully reloading
+                    model.addAttribute("successMsg", "Congratulations you have successfully saved Role data....");
+                }
+            }
         }
-        return "add-role";
+        return "role/add-role";
     }
 
-    @GetMapping(value = "/roleDel/{id}")
-    public String delRole(@PathVariable("id") Long id) {
-        if (id != null) {
-            this.roleRepo.deleteById(id);
-        }
-        return "redirect:/roleHome";
-    }
+
+
+
+//    @GetMapping(value = "/roleDel/{id}")
+//    public String delRole(@PathVariable("id") Long id) {
+//        if (id != null) {
+//            this.roleRepo.deleteById(id);
+//        }
+//        return "redirect:/role-list";
+//    }
+
+
+
+
 
     @GetMapping("/edit-role/{id}")
-    public String editView(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("student", this.roleRepo.getOne(id));
-        return "edit-role";
+    public String editView( @PathVariable("id") Long id,Model model) {
+        model.addAttribute("role", this.roleRepo.getOne(id));
+        return "role/edit-role";
     }
     @PostMapping("/edit-role/{id}")
     public String edit(@Valid Role role, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
         if (bindingResult.hasErrors()) {
-            return "edit-role";
+            return "role/edit-role";
+        }else{
+            if (role != null){
+                Role role2 = this.roleRepo.findByRoleName(role.getRoleName());
+                if (role2 != null){
+                    model.addAttribute("existMsg","RoleName Already Exist");
+                    return "role/edit-role";
+                }else {
+                    this.roleRepo.save(role);
+                    model.addAttribute("role",new Role());
+                    model.addAttribute("successMsg","Successfully saved Role data");
+                }
+            }
         }
-        this.roleRepo.save(role);
+        return "redirect:/role-list";
+    }
 
-        return "redirect:/roleHome";
+@RequestMapping(value = "/role-del/{id}",method = RequestMethod.GET)
+    public String delRole(@PathVariable("id") Long id){
+        this.roleRepo.deleteById(id);
+        return "redirect:/role-list";
+
     }
 }
