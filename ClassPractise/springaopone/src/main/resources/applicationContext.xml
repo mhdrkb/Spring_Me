@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.mhd.springaopone.Employee" id="employeeBean">
+        <property name="name" value="Mehedee Hasan Rakib Gadha"/>
+        <property name="id" value="1243859"/>
+        <property name="msg" value="Hi, this is MHD"/>
+    </bean>
+
+
+
+    <bean class="com.mhd.springaopone.DoAdviceBeforeMethod" id="doAdviceBeforeMethodBean"/>
+    <bean class="com.mhd.springaopone.DoAdviceAfterMethod" id="adviceAfterMethodBean"/>
+    <bean class="com.mhd.springaopone.DoAfterThowingException" id="doAfterThrowingExceptionBean"/>
+
+
+
+
+    <bean class="org.springframework.aop.framework.ProxyFactoryBean" id="proxyFactoryBean">
+        <property name="target" ref="employeeBean"/>
+        <property name="interceptorNames">
+            <list>
+                <value>doAdviceBeforeMethodBean</value>
+                <value>adviceAfterMethodBean</value>
+                <value>doAfterThrowingExceptionBean</value>
+            </list>
+        </property>
+    </bean>
+</beans>
