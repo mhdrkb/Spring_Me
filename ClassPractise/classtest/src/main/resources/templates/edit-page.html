@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Form</title>
+    <style type="text/css">
+        .err{
+            color: red;
+        }
+        .succes{
+            color:green;
+        }
+    </style>
 </head>
 <body>
+<form action="#" th:action="@{/edit-user/} + ${id}" th:object="${user}" method="post">
+    <table>
+        <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
 
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" th:value="${user.name}" /></td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Mobile:</td>
+            <td><input type="text" th:field="*{mobile}" th:value="${user.mobile}" /></td>
+            <td th:class="err" th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}">Age Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+
+<a th:href="@{/}">Home</a>
 </body>
 </html>
