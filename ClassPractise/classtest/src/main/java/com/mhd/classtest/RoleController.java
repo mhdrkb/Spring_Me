@@ -30,7 +30,7 @@ public class RoleController {
                     model.addAttribute("existMsg", "Role name already exist");
                 }else{
                     this.roleRepo.save(role);
-                    model.addAttribute("roel", new Role());
+                    model.addAttribute("role", new Role());
                     model.addAttribute("successMsg", "Successfully saved data");
                 }
             }
