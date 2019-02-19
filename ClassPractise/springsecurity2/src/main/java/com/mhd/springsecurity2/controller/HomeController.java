@@ -31,6 +31,11 @@ public class HomeController {
         return "sadmin/sad";
     }
 
+    @GetMapping("/off")
+    public String officerView(){
+        return "sadmin/sad";
+    }
+
     @GetMapping("/sec")
     public String secure(Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

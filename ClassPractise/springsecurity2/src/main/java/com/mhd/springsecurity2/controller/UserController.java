@@ -24,32 +24,34 @@ public class UserController {
     private UserRepo userRepo;
     @Autowired
     private RoleRepo roleRepo;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/add-user")
     public String showForm(User user, Model model) {
-        model.addAttribute("roleList",this.roleRepo.findAll());
+        model.addAttribute("roleList", this.roleRepo.findAll());
         return "user/add-user";
     }
 
     @PostMapping("/add-user")
     public String save(@Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("roleList", this.roleRepo.findAll());
             return "user/add-user";
         } else {
-            try {
-                this.userRepo.save(user);
-                model.addAttribute("student", new User()); //to clear the form after successfully reloading
-                model.addAttribute("successMsg", "Congratulations you are successfully saved data...."); //for showing message in this page
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            user.setPaswword(passwordEncoder.encode(user.getPaswword()));
+            this.userRepo.save(user);
+            model.addAttribute("user", new User()); //to clear the form after successfully reloading
+            model.addAttribute("successMsg", "Congratulations you are successfully saved data...."); //for showing message in this page
         }
-        model.addAttribute("roleList",this.roleRepo.findAll());
+        model.addAttribute("roleList", this.roleRepo.findAll());
         return "user/add-user";
+    }
+
+    @GetMapping(value = "/user-list")
+    public String userList(Model model) {
+        model.addAttribute("userList", this.userRepo.findAll());
+        return "user/user-list";
     }
 
 

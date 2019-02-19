@@ -18,6 +18,11 @@ public class RoleController {
     @Autowired
     private RoleRepo roleRepo;
 
+    @GetMapping(value = "/role-list")
+    public String roleList(Model model){
+        model.addAttribute("roleList",this.roleRepo.findAll());
+        return "role/role-list";
+    }
     @GetMapping("/add-role")
     public String role(Role role) {
         return "role/add-role";
