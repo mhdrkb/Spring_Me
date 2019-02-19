@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Secure</title>
 </head>
 <body>
-<h1>Secure Page.......</h1>
+<h1><a th:href="@{/logout}">Logout</a> </h1>
+<h2>This is Secure Page.......!! <br/>Super Admin, Admin and User can access this page</h2><br/>
+
+<h1>Welcome...!!! <span th:text="${name}"></span></h1>
+<h1>You are Logged in as <span th:text="${username}"></span></h1>
+
+<span sec:authorize="hasRole('ROLE_SUPERADMIN')">
+    SUPER ADMIN can only view this content .......
+</span>
+<br/>
+<span sec:authorize="hasRole('ROLE_ADMIN')">
+    only ADMIN can only view this content .......
+</span>
+<br/>
+<span sec:authorize="hasRole('ROLE_USER')">
+    only USER and SUPERADMIN can only view this content .......
+</span>
 </body>
 </html>
