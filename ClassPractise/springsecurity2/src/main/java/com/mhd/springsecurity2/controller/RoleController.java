@@ -32,6 +32,7 @@ public class RoleController {
                 if (role1 != null){
                     model.addAttribute("existMsg","RoleName ALready Exist");
                 }else{
+                    role.setRoleName(role.getRoleName().toUpperCase());
                     this.roleRepo.save(role);
                     model.addAttribute("role", new Role()); //to clear the form after successfully reloading
                     model.addAttribute("successMsg", "Congratulations you have successfully saved Role data....");

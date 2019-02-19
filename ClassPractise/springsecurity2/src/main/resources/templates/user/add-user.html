@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style type="text/css">
+        .err {
+            color: darkred;
+        }
+        .success {
+            color: darkgreen;
+        }
+        .txt{
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+<span th:class="success" style="color: green; font-weight: 900;" th:text="${successMsg}"></span>
+
+<form action="#" th:object="${user}" th:action="@{/user/add-user}" th:method="POST">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}"/></td>
+
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="*{email}"/></td>
+
+        </tr>
+        <tr>
+            <td>Username:</td>
+            <td><input class="txt" type="text" th:field="*{usernamee}"/></td>
+
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" th:field="*{password}"/></td>
+        </tr>
+        <tr>
+            <td>Status: </td>
+            <td>
+                <input type="b" th:value="xml" th:field="*{status}" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Save"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{'/'}">Home</a>
+</body>
+</html>

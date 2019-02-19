@@ -16,7 +16,7 @@ public class HomeController {
 
     @GetMapping("/u")
     public String userView(){
-        return "user/u";
+        return "add-user";
     }
 
 
