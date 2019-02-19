@@ -1,4 +1,4 @@
-package com.mhd.springsecurity2;
+package com.mhd.springsecurity2.config;
 
 import com.mhd.springsecurity2.entity.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,14 +8,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class CustomerUserDetails extends User implements UserDetails {
-    public CustomerUserDetails(final User user) {
+public class CustomUserDetails extends User implements UserDetails {
+    public CustomUserDetails(final User user) {
         super(user);
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE" + role.getRoleName())).collect(Collectors.toList());
+        return getRoles()
+                .stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRoleName()))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -25,26 +28,26 @@ public class CustomerUserDetails extends User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return super.getName();
+        return super.getUserName();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

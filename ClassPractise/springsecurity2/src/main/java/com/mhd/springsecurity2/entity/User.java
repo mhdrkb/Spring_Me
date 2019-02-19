@@ -124,4 +124,14 @@ public class User {
                 ", roles=" + roles +
                 '}';
     }
+
+    public User(String userName, String paswword, String email, String name, boolean status, Set<Role> roles) {
+        this.userName = userName;
+        this.paswword = paswword;
+        this.email = email;
+        this.name = name;
+        this.status = status;
+        this.roles = roles;
+    }
+
 }
