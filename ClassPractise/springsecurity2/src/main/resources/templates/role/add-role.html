@@ -23,6 +23,7 @@
             <td>Name:</td>
             <td><input type="text" th:field="*{roleName}"/></td>
             <!--<td th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}">Name Error</td>-->
+            <span th:class="err" th:text="${existMsg}"></span>
         </tr>
         <tr>
             <td>
@@ -31,6 +32,6 @@
         </tr>
     </table>
 </form>
-<a th:href="@{'/role-list'}">RoleList</a>
+<a th:href="@{'/role/role-list'}">RoleList</a>
 </body>
 </html>

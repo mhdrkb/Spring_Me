@@ -26,8 +26,8 @@
     <tr th:each="u : ${roleList}">
         <td th:text="${u.id}"></td>
         <td th:text="${u.roleName}"></td>
-        <td><a th:href="@{'/edit/' + ${u.id}}">Edit</a></td>
-        <td><a th:href="@{'/del/' + ${u.id}}">Delete</a></td>
+        <td><a th:href="@{'/role/edit-role/' + ${u.id}}">Edit</a></td>
+        <td><a th:href="@{'/role/del-role/' + ${u.id}}">Delete</a></td>
     </tr>
 </table>
 </body>
