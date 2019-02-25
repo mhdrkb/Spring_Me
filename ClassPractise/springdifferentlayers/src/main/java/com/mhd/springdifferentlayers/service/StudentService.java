@@ -1,8 +1,16 @@
 package com.mhd.springdifferentlayers.service;
 
-import org.springframework.stereotype.Service;
+import com.mhd.springdifferentlayers.dto.StudentDTO;
+import com.mhd.springdifferentlayers.entity.Student;
 
-@Service
+import java.util.List;
+
 public interface StudentService {
-    public String saveOrUpdate();
+    void saveOrUpdate(StudentDTO studentDTO);
+    void deleteById(Long id);
+    Student findById(Long id);
+    Student findByEmailAddress(String email);
+
+    List<StudentDTO> getAll();
+    long countNoOfStudent(String email);
 }
